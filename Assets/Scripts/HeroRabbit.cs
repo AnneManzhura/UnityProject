@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroRabbit : MonoBehaviour {
+public class HeroRabbit: MonoBehaviour {
 
     public float speed = 1;
     
@@ -15,7 +15,7 @@ public class HeroRabbit : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () {
 		
 	}
@@ -28,6 +28,7 @@ public class HeroRabbit : MonoBehaviour {
         vel.x = value * speed;
         myBody.velocity = vel;
         }
+        
     if(value < 0) {
         sr.flipX = true;
     } else if(value > 0) {
