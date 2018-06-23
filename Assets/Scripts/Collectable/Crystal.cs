@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Crystal : Collectable {
 
+    public enum Color {RED, BLUE, GREEN};
+    public Color color;
+    
 	protected override void OnRabbitHit (HeroRabbit rabit) {
-		LevelController.current.addCrystals(1);
+		LevelController.current.addCrystals((int)color);
 		this.CollectedHide ();
 	}
 }

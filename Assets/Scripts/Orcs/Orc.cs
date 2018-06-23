@@ -67,11 +67,9 @@ public class Orc : MonoBehaviour {
 	protected virtual bool RabbitInRadius()
 	{
 		Vector3 my_pos = this.transform.position;
-		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position; 
-		if (System.Math.Abs(Mathf.Abs(rabbit_pos.x - pointA.x) 
-		                    + Mathf.Abs(rabbit_pos.x - pointB.x) 
-		                    - Mathf.Abs(pointA.x - pointB.x)) < 0.2f) return true;
-		return false;
+		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position;
+        
+        return (System.Math.Abs(rabbit_pos.x-my_pos.x) < walkDistance && System.Math.Abs(rabbit_pos.y-my_pos.y) < 0.5f);
 	}
 	
 	void walk()
@@ -125,6 +123,8 @@ public class Orc : MonoBehaviour {
 		float angle = Mathf.Atan2(v.y, v.x) / Mathf.PI * 180;
 		if (angle > 60f && angle < 150f)
 		{
+			
+		
 			Die();
 		} else
 		{
@@ -164,15 +164,6 @@ public class Orc : MonoBehaviour {
     {
         StartCoroutine(DieCoroutine());
     }
-    
-    /*
-	private void Die() {
-        animator.SetTrigger("dead");
-        Debug.Log("dead");
-		mode = Mode.Dead;
-		Destroy(this.gameObject);
-	}
-	*/
 	
 	protected virtual void attackRabbit() {}
 }
