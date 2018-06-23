@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroRabbit: MonoBehaviour {
-
+    public static HeroRabbit lastRabbit = null;
+    
     private Rigidbody2D myBody = null;
     private SpriteRenderer sr = null;
     private Animator animator = null;
@@ -23,6 +24,9 @@ public class HeroRabbit: MonoBehaviour {
     private bool isInvincible = false;
     private bool isBig = false;
     
+    void Awake() {
+        lastRabbit = this;
+    }
     
 	void Start () {
 		myBody = this.GetComponent<Rigidbody2D> ();
@@ -138,10 +142,15 @@ public class HeroRabbit: MonoBehaviour {
         }
         else
         {
-            isDead = true;
-            LevelController.current.onRabbitDeath(this);
-            isDead = false;
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        LevelController.current.onRabbitDeath(this);
+        isDead = false;
     }
     
     static void SetNewParent(Transform obj, Transform new_parent)
@@ -160,6 +169,7 @@ public class HeroRabbit: MonoBehaviour {
         }
     }
 
+    
     public bool isInvincibleNow()
     {
         return isInvincible;

@@ -23,6 +23,7 @@ public static LevelController current;
     public void onRabbitDeath(HeroRabbit rabbit) {
         //При смерті кролика повертаємо на початкову позицію 
         StartCoroutine(whileDying(1, rabbit));
+        
     }
 
     IEnumerator whileDying(float sec, HeroRabbit rabbit)

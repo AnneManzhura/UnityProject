@@ -7,6 +7,8 @@ public class HeroFollow : MonoBehaviour {
 	public HeroRabbit rabit;
 
 	void Update () {
+
+		
 		//Отримуємо доступ до компонента Transform
 		//це Скорочення до GetComponent<Transform>
 		Transform rabit_transform = rabit.transform;
