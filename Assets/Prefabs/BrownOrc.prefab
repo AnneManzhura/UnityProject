@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295908509274238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.37, y: -0.32, z: 0}
+  m_LocalPosition: {x: -16.48, y: 1.61, z: 0}
   m_LocalScale: {x: 2.050333, y: 1.9964695, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,8 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0161cd5dec7914231b1acdbe810a1f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackClip: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
+  dieClip: {fileID: 8300000, guid: 0da0a61767f664de1a8b3e03d7ca4d4e, type: 3}
   walkSpeed: 1
-  radius: 4
+  walkDistance: 4
   pointA: {x: 0, y: 0, z: 0}
   pointB: {x: 0, y: 0, z: 0}
   prefabCarrot: {fileID: 1564453740738300, guid: f0db080d7189f4755ba60aa06d42866f,

@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667574591424484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 1.7, z: 0}
+  m_LocalPosition: {x: 11.09, y: 6.34, z: 0}
   m_LocalScale: {x: 1.4336255, y: 1.4611455, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,10 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  MaxJumpTime: 4
-  JumpSpeed: 2
-  isDead: 0
-  isBig: 0
+  MaxJumpTime: 3
+  JumpSpeed: 3
+  runClip: {fileID: 8300000, guid: 0d024189a711c440997b2d9f341c8dd0, type: 3}
+  dieClip: {fileID: 8300000, guid: 7553580dee44e4f96b2efa5f4e5e17c3, type: 3}
+  groundClip: {fileID: 8300000, guid: 4678dc960a2b949329a55d696cf4ec68, type: 3}
 --- !u!212 &212734240177448246
 SpriteRenderer:
   m_ObjectHideFlags: 1

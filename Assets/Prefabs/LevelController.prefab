@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4428250149835728}
   - component: {fileID: 114045533870448060}
+  - component: {fileID: 114990519102642940}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -51,14 +52,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c186cc76c0dba40128b7042419c3a7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultFruits: 12
+  defaultFruits: 2
   coinsText: {fileID: 0}
   fruitsText: {fileID: 0}
+  coinsTextPopUp: {fileID: 0}
+  fruitsTextPopUp: {fileID: 0}
   heartsImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   crystalImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  crystalImagesWinPopUp:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  crystalImagesLosePopUp:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -69,3 +80,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 25e34c6172d294f49b2036adce060f37, type: 3}
   - {fileID: 21300000, guid: 3cb1b99d25dc94b7a9197f9696940e7d, type: 3}
   - {fileID: 21300000, guid: 1d59749b388494924bedae3370db5fe0, type: 3}
+--- !u!114 &114990519102642940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927553973809416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b26b6c72dd1d4dd9b550a2eaacbdd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 57a5b2120c2d04fa9bcb5b2e99ee9361, type: 3}

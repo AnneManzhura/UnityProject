@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class Fruit : Collectable {
 
+    public int id = 0;
+    private bool isCollected=false;
+    
+    void Start()
+    {
+        
+        if (LevelController.current.fruitIsPickedUp(id)) {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
+            LevelController.current.incrementFruitNumber();
+            isCollected=true;
+        }
+            
+    }
+    
 	protected override void OnRabbitHit (HeroRabbit rabit)
 	{
-		LevelController.current.addFruits(1);
-		this.CollectedHide ();
+        if(!isCollected){
+            LevelController.current.addFruits(id);
+		      this.CollectedHide ();
+        }
 	}
 }

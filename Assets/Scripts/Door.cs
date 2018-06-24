@@ -5,36 +5,41 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
     
-    //SpriteRenderer crystal;
-   // SpriteRenderer fruit;
-   // SpriteRenderer check;
-   // SpriteRenderer lock;
+    public SpriteRenderer crystal;
+    public SpriteRenderer fruit;
+    public SpriteRenderer check;
+    public SpriteRenderer locked;
+    
+    public int level;
     
     private bool isOpen = true;
-    
+    private string levelName="";
     
         private void Awake()
     {
-            /*
-        if (stats.hasCrystals)
-        {
-            crystal.sprite = allCrystals;
-            crystal.GetComponent<Transform>().localScale = new Vector3(.7f, .7f, 1f);
-        }
-        if (stats.hasAllFruits)
-        {
-            fruit.sprite = allFruits;
-            fruit.GetComponent<Transform>().localScale = new Vector3(.8f, .8f, 1f);
-        }
-        
+            levelName ="Level"+level;
             
-        if (LevelStats.Load(prevLevel) != null)
-            isOpen = LevelStats.Load(prevLevel).levelPassed;
-          */
+            LevelStat stats = LevelStat.Deserialize(levelName);
+            if (stats == null) stats = new LevelStat();
             
-        //lock.enabled = !isOpen;
-        //check.enabled = stats.levelPassed;
+            crystal.enabled = stats.hasCrystals;
+            fruit.enabled = stats.hasAllFruits;
+            
+            if(level>1){
+                string prevLevelName="Level"+(level-1);
+                
+                if(LevelStat.Deserialize(prevLevelName)!=null)
+                {
+                    isOpen = LevelStat.Deserialize(prevLevelName).levelPassed;  
+                }
+                else isOpen=false;
+            
+            }
+            
+            locked.enabled = !isOpen;
+            check.enabled = stats.levelPassed;
     }
+    
     
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -43,7 +48,7 @@ public class Door : MonoBehaviour {
             HeroRabbit rabbit = collider.GetComponent<HeroRabbit>();
             if (rabbit != null)
             {
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene(levelName);
             }
         }
     }

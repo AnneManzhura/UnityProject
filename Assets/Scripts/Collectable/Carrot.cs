@@ -5,6 +5,8 @@ using UnityEngine;
 public class Carrot : Collectable {
    
     private Vector3 direction;
+    
+  
     public float speed = 3f;
     
     void Start() {

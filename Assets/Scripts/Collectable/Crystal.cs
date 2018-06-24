@@ -5,6 +5,7 @@ using UnityEngine;
 public class Crystal : Collectable {
 
     public enum Color {RED, BLUE, GREEN};
+     
     public Color color;
     
 	protected override void OnRabbitHit (HeroRabbit rabit) {

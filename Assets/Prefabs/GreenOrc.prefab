@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905517092767214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.03, y: -0.35, z: 0}
+  m_LocalPosition: {x: -3.18, y: -0.35, z: 0}
   m_LocalScale: {x: 2.0559509, y: 1.8639599, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e784e6be52bd8494a9117d8ff0d3a059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackClip: {fileID: 8300000, guid: ece9b14a232f14f48ab9a5e844cb5daf, type: 3}
+  dieClip: {fileID: 8300000, guid: 0da0a61767f664de1a8b3e03d7ca4d4e, type: 3}
   walkSpeed: 1
   walkDistance: 7
   pointA: {x: 0, y: 0, z: 0}

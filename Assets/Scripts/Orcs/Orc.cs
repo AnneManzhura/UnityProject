@@ -5,6 +5,14 @@ using UnityEngine;
 public class Orc : MonoBehaviour {
 	public enum Mode { GoToA, GoToB, Attack, Dead }
 	
+    
+    public AudioClip attackClip = null;
+    protected AudioSource attackSource = null;
+    
+   
+    public AudioClip dieClip = null;
+    protected AudioSource dieSource = null;
+    
 	public float walkSpeed = 1f;
 	public float walkDistance=4f;
     
@@ -28,6 +36,11 @@ public class Orc : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 		GetComponent<Rigidbody2D>().freezeRotation = true;	
+        
+         attackSource = gameObject.AddComponent<AudioSource>();
+        attackSource.clip = attackClip;
+        dieSource = gameObject.AddComponent<AudioSource>();
+        dieSource.clip = dieClip;
 	}
 
 	void FixedUpdate()
@@ -66,10 +79,13 @@ public class Orc : MonoBehaviour {
 
 	protected virtual bool RabbitInRadius()
 	{
-		Vector3 my_pos = this.transform.position;
+        if(HeroRabbit.lastRabbit!=null){
+            Vector3 my_pos = this.transform.position;
 		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position;
         
         return (System.Math.Abs(rabbit_pos.x-my_pos.x) < walkDistance && System.Math.Abs(rabbit_pos.y-my_pos.y) < 0.5f);
+        }
+		return false;
 	}
 	
 	void walk()
@@ -123,15 +139,14 @@ public class Orc : MonoBehaviour {
 		float angle = Mathf.Atan2(v.y, v.x) / Mathf.PI * 180;
 		if (angle > 60f && angle < 150f)
 		{
-			
-		
 			Die();
 		} else
 		{
+            if (SoundManager.current.isSoundOn()) attackSource.Play();
 			animator.SetTrigger("attack");
 			rabbitDead = true;
 			rabbit.Die();
-			waitForRabbitToDieTime = 2f;
+			waitForRabbitToDieTime = 1f;
 		}
 	}
 	
@@ -162,6 +177,7 @@ public class Orc : MonoBehaviour {
 
     public void Die()
     {
+        if (SoundManager.current.isSoundOn()) dieSource.Play();
         StartCoroutine(DieCoroutine());
     }
 	

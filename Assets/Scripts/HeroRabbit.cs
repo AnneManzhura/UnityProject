@@ -23,6 +23,15 @@ public class HeroRabbit: MonoBehaviour {
     private bool isDead = false;
     private bool isInvincible = false;
     private bool isBig = false;
+    private bool isActive = true;
+    private bool groundSoundPlayed = true;
+    
+    public AudioClip runClip = null;
+    public AudioClip dieClip = null;
+    public AudioClip groundClip = null;
+    private AudioSource runSource = null;
+    private AudioSource dieSource = null;
+    private AudioSource groundSource = null;
     
     void Awake() {
         lastRabbit = this;
@@ -37,10 +46,20 @@ public class HeroRabbit: MonoBehaviour {
             LevelController.current.setStartPosition(transform.position);
 	    this.heroParent = this.transform.parent;
 	    sizeDefault = transform.lossyScale;
+        
+        runSource = gameObject.AddComponent<AudioSource>();
+        runSource.clip = runClip;
+        runSource.loop = true;
+        dieSource = gameObject.AddComponent<AudioSource>();
+        dieSource.clip = dieClip;
+        groundSource = gameObject.AddComponent<AudioSource>();
+        groundSource.clip = groundClip;
 	}
     
-    void FixedUpdate () { 
-        float value = Input.GetAxis ("Horizontal");
+    void FixedUpdate () {
+        if(isActive)
+        {
+            float value = Input.GetAxis ("Horizontal");
         
         if (Mathf.Abs (value) > 0 && !isDead) {
             Vector2 vel = myBody.velocity;
@@ -48,11 +67,16 @@ public class HeroRabbit: MonoBehaviour {
             myBody.velocity = vel;
             sr.flipX = (value > 0) ? false : true;
             animator.SetBool ("run", true);
+            if (!runSource.isPlaying && SoundManager.current.isSoundOn()) runSource.Play();
         }
         else
         {
+            runSource.Stop();
             animator.SetBool ("run", false);
-        }  
+        }
+            if (!isGrounded) runSource.Stop();
+            
+            
           
         
         //Ground
@@ -74,8 +98,14 @@ public class HeroRabbit: MonoBehaviour {
             isGrounded = false;
             SetNewParent(this.transform, this.heroParent);
         }
-        Debug.DrawLine(from, to, Color.red);
+            
+         if (isGrounded && !groundSoundPlayed && SoundManager.current.isSoundOn())
+        {
+            groundSoundPlayed = true;
+            groundSource.Play();
+        }
         
+            
         
        
         if (Input.GetButtonDown("Jump") && isGrounded && !isDead)
@@ -87,6 +117,7 @@ public class HeroRabbit: MonoBehaviour {
                 if (JumpTime < MaxJumpTime)
                     myBody.velocity = new Vector2(myBody.velocity.x, JumpSpeed * (1.0f - JumpTime / MaxJumpTime));
             } else {
+                groundSoundPlayed = false;
                 this.JumpActive = false;
                 this.JumpTime = 0;
         }
@@ -114,6 +145,7 @@ public class HeroRabbit: MonoBehaviour {
         } else {
             animator.SetBool ("jump", true);
         }  
+    }     
  }
 
     
@@ -146,9 +178,15 @@ public class HeroRabbit: MonoBehaviour {
         }
     }
 
+    public void playDeathSound()
+    {
+        if(SoundManager.current.isSoundOn())dieSource.Play();
+    }
+    
     public void Die()
     {
         isDead = true;
+        playDeathSound();
         LevelController.current.onRabbitDeath(this);
         isDead = false;
     }
@@ -169,6 +207,22 @@ public class HeroRabbit: MonoBehaviour {
         }
     }
 
+    public void setInActive()
+    {
+        
+        animator.SetBool ("jump", false);
+        animator.SetBool ("run", false);
+        runSource.Stop();
+        
+        isActive=false;
+    }
+    
+     public void setActive()
+    {
+        
+        isActive=true;
+    }
+    
     
     public bool isInvincibleNow()
     {

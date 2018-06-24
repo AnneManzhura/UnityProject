@@ -10,6 +10,5 @@ public class PlayButton : MonoBehaviour {
 	public void Play()
     {
         SceneManager.LoadScene("ChooseLevel");
-        Debug.Log("Play");
     }
 }

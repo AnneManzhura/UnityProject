@@ -9,6 +9,7 @@ public class BrownOrc : Orc {
 	public GameObject prefabCarrot;
     
 	public float radiusToRabbit = 3f;
+  
     public float AttackInterval = 2f;
 	private float lastCarrot = 0f;
 	
@@ -47,6 +48,7 @@ public class BrownOrc : Orc {
 		obj.transform.position = this.transform.position + new Vector3(0, 1, 0);
 		//Запускаємо в рух
 		Carrot carrot = obj.GetComponent<Carrot> ();
+        if (SoundManager.current.isSoundOn()) attackSource.Play();
 		carrot.Launch (direction);
 	}
 	
