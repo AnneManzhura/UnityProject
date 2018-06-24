@@ -5,7 +5,7 @@ using UnityEngine;
 public class GreenOrc : Orc {
 	
 	public float runSpeed = 3f;
-	
+    
 	protected override void attackRabbit()
 	{
 		if (!rabbitDead)

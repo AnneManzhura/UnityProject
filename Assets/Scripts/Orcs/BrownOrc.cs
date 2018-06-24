@@ -9,10 +9,10 @@ public class BrownOrc : Orc {
 	public GameObject prefabCarrot;
     
 	public float radiusToRabbit = 3f;
+    
   
     public float AttackInterval = 2f;
 	private float lastCarrot = 0f;
-	
 	
 	protected override void attackRabbit()
 	{
@@ -30,15 +30,19 @@ public class BrownOrc : Orc {
 				lastCarrot = Time.time;
                 animator.SetTrigger("attack");
 				launchCarrot(DirectionToRabbit());					
-			}
-			
+			}	
 		}
 	}
     
     protected override bool RabbitInRadius() {
 		Vector3 my_pos = this.transform.position;
 		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position;
-        return Mathf.Abs(rabbit_pos.x - my_pos.x) < 5.0f;
+        
+        return Math.Abs(rabbit_pos.x-my_pos.x) < radiusToRabbit && Math.Abs(rabbit_pos.y-my_pos.y) < 0.5f;
+        
+        /*
+        return (System.Math.Abs(rabbit_pos.x-my_pos.x) < radiusToRabbit && System.Math.Abs(rabbit_pos.y-my_pos.y) < radiusToRabbit);
+        */
 	}
     
     

@@ -74,6 +74,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   liveUsed: {fileID: 21300000, guid: d53831f2405364d7b936a805bc85fa59, type: 3}
+  liveActive: {fileID: 21300000, guid: 2ce8c79150c004ce39a7d3c7a9b69e2d, type: 3}
   noCrystal: {fileID: 21300000, guid: 5e6c37d9007ca497e8c7ce02615e8268, type: 3}
   heartSprite: {fileID: 21300000, guid: 2ce8c79150c004ce39a7d3c7a9b69e2d, type: 3}
   crystalSprites:

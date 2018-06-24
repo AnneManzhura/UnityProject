@@ -14,7 +14,7 @@ public class Orc : MonoBehaviour {
     protected AudioSource dieSource = null;
     
 	public float walkSpeed = 1f;
-	public float walkDistance=4f;
+	public float walkDistance=10f;
     
 	private float waitForRabbitToDieTime=0f;
 	
@@ -22,13 +22,12 @@ public class Orc : MonoBehaviour {
 	protected Animator animator = null;
 	
 	protected Mode mode;
-	public Vector3 pointA, pointB;
+	private Vector3 pointA, pointB;
 
 	public static bool rabbitDead=false;
 	
 	public void Start ()
 	{
-		
 		pointB = this.transform.position;
 		pointA = pointB;
 		pointA.x += walkDistance;
@@ -77,15 +76,12 @@ public class Orc : MonoBehaviour {
 		} 
 	}
 
-	protected virtual bool RabbitInRadius()
+    protected virtual bool RabbitInRadius()
 	{
-        if(HeroRabbit.lastRabbit!=null){
-            Vector3 my_pos = this.transform.position;
-		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position;
+        Vector3 my_pos = this.transform.position;
+		Vector3 rabbit_pos = HeroRabbit.lastRabbit.transform.position; 
         
-        return (System.Math.Abs(rabbit_pos.x-my_pos.x) < walkDistance && System.Math.Abs(rabbit_pos.y-my_pos.y) < 0.5f);
-        }
-		return false;
+		return rabbit_pos.x > Mathf.Min(pointA.x, pointB.x) && rabbit_pos.x < Mathf.Max(pointA.x, pointB.x) && System.Math.Abs(rabbit_pos.y-my_pos.y) < 0.5f;
 	}
 	
 	void walk()

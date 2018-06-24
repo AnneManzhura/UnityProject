@@ -9,7 +9,7 @@ public class BackgroundMusic : MonoBehaviour {
     private AudioSource musicSource = null;
 
 	void Start () {
-        //PlayerPrefs.DeleteAll();
+        
         musicSource = gameObject.AddComponent<AudioSource>(); 
         musicSource.clip = music;
         musicSource.loop = true;

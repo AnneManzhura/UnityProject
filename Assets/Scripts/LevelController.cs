@@ -28,6 +28,7 @@ public class LevelController : MonoBehaviour {
     public Image[] crystalImagesLosePopUp;
     
     public Sprite liveUsed;
+    public Sprite liveActive;
     public Sprite noCrystal;
     public Sprite heartSprite;
     public Sprite[] crystalSprites;
@@ -122,6 +123,16 @@ public class LevelController : MonoBehaviour {
         fruits++;
         if (!fruitIsPickedUp(id))
             statistics.collectedFruits.Add(id);
+    }
+    
+    public void addLives()
+    {
+        if(lives<3)
+        {
+            heartsImages[lives].sprite = liveActive;
+            lives++;
+            
+        }
     }
     
     public void incrementFruitNumber() 
